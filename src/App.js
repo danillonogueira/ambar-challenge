@@ -1,7 +1,9 @@
+import Home from './views/Home';
+
 const App = () => {
   return (
     <>
-      kek
+      <Home />
     </>
   );
 };
