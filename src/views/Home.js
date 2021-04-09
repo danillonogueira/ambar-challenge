@@ -1,29 +1,53 @@
-import { Row, Col, Button, Card } from 'antd';
-import 'antd/dist/antd.css';
+import { Row, Col, Button } from 'antd';
+import Display from './../components/Display';
+import { getCityData } from './../services/Get';
 
 const Home = () => {
   return (
     <>
       <Row>
         <Col span={24}>
-          <Button type="primary" size="large">Ribeirão Preto</Button>
-          <Button type="primary" size="large">Araraquara</Button>
-          <Button type="primary" size="large">São Carlos</Button>
+          <Button 
+            type="primary" 
+            size="large"
+            onClick={() => getCityData('Ribeirão Preto')}
+          >
+            Ribeirão Preto
+          </Button>
+          <Button 
+            type="primary" 
+            size="large"
+            onClick={() => getCityData('Araraquara')}
+          >
+            Araraquara
+          </Button>
+          <Button 
+            type="primary" 
+            size="large"
+            onClick={() => getCityData('São Carlos')}
+          >
+            São Carlos
+          </Button>
         </Col>
       </Row>
       <Row>
         <Col span={24}>
-          <Card title="Card title" bordered={true} style={{ width: 300 }}>
-            <p>Local</p>
-            <p>200 graus C</p>
-            <p>Max 245 graus</p>
-            <p>Min 145 graus</p>
-          </Card>
+          <Display 
+            local={'Araraquara'}
+            current={200}
+            max={245}
+            min={199}
+          />
         </Col>
       </Row>
       <Row>
         <Col span={24}>
-          <Button type="primary" size="large">Mostrar Min/Máx</Button>
+          <Button 
+            type="primary" 
+            size="large"
+          >
+            Mostrar Mín/Máx
+          </Button>
         </Col>
       </Row>
     </>
