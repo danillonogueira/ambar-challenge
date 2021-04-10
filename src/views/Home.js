@@ -1,8 +1,8 @@
 import { Row, Col, Button, Spin, Card } from 'antd';
-import { useSelector } from 'react-redux';
 import CityButton from './../components/CityButton';
 import styled from 'styled-components';
 import { UnorderedListOutlined } from '@ant-design/icons';
+import Display from './../components/Display';
 
 const StyledHome = styled.div`
   width: 100%;
@@ -16,8 +16,6 @@ const StyledHome = styled.div`
 `;
 
 const Home = () => {
-  const { observation, isLoading, hasObservation } = useSelector(state => state);
-
   return (
     <StyledHome>
       <Row>
@@ -29,33 +27,7 @@ const Home = () => {
       </Row>
       <Row>
         <Col span={24}>
-          {(!hasObservation && !isLoading) && <span>Clique em uma cidade para buscar informações</span>}
-          {
-            isLoading && (
-              <>
-                <span>Buscando informações da cidade...</span>
-                <br />
-                <Spin size="large" />
-              </>
-            )
-          }
-          {
-            (hasObservation && !isLoading) && (
-              <Card 
-                title={observation.city}
-                bordered={true} 
-                style={{ 
-                  width: 300,
-                  margin: '20px 0',
-                  textAlign: 'center'
-                }}
-              >
-                <p><strong>Atual:</strong> {observation.temp}<sup>o</sup> C</p>
-                <p>Mín: {observation.min}<sup>o</sup> C</p>
-                <p>Máx: {observation.max}<sup>o</sup> C</p>
-              </Card>
-            )
-          }
+          <Display />
         </Col>
       </Row>
       <Row>

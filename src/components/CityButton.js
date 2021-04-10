@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button, notification } from 'antd';
 import { useDispatch } from 'react-redux';
 import { getCityData } from '../services/Services';
 import convertKelvinToCelsius from './../helpers/Helpers';
@@ -28,6 +28,14 @@ const CityButton = ({ city }) => {
     };
   };
 
+  const openNotification = () => {
+    notification.success({
+      message: 'Informações obtidas com sucesso!',
+      placement: 'topRight',
+      duration: 3
+    });
+  };
+
   const handleClick = (city) => {
     startFetching();
     getCityData(city)
@@ -36,6 +44,7 @@ const CityButton = ({ city }) => {
           ...wrapObservationData(response.data.main),
           city
         });
+        openNotification();
       })
       .catch((err) => {
         console.log(err);
@@ -44,13 +53,13 @@ const CityButton = ({ city }) => {
 
   return (
     <Button 
-      type="primary" 
+      type="primary"
+      icon={<ThunderboltOutlined />}
       size="large"
       onClick={() => handleClick(city)}
       style={{ 
         margin: '0 10px',
-      }}
-      icon={<ThunderboltOutlined />}
+      }} 
     >
       {city}
     </Button>
