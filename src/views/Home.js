@@ -1,7 +1,7 @@
 import { Row, Col, Button, Spin, Card } from 'antd';
-import { getCityData } from '../services/GetCityData';
+import { getCityData } from '../services/Services';
 import { useSelector, useDispatch } from 'react-redux';
-import convertKelvinToCelsius from './../helpers/Converter';
+import convertKelvinToCelsius from '../helpers/Helpers';
 
 const Home = () => {
   const observation = useSelector(state => state.observation);
