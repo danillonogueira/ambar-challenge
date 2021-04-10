@@ -9,13 +9,16 @@ const Home = () => {
   const hasObservation = useSelector(state => state.hasObservation);
   const dispatch = useDispatch();
 
+  const startFetching = () => {
+    dispatch({ type: 'FETCH_OBSERVATION'});
+  ;}
+
   const storeObservation = (newObservation) => {
-    dispatch({ type: 'STORE_OBSERVATION', newObservation });
+    dispatch({ type: 'STORE_FETCHED_OBSERVATION', newObservation });
   };
 
   const handleClick = (city) => {
-    dispatch({ type: 'FETCH_DATA'});
-
+    startFetching();
     getCityData(city)
       .then((response) => {
         const { temp, temp_min, temp_max } = response.data.main;
