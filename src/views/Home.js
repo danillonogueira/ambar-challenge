@@ -2,6 +2,7 @@ import { Row, Col, Button, Spin } from 'antd';
 import Display from './../components/Display';
 import { getCityData } from '../services/GetCityData';
 import { useSelector, useDispatch } from 'react-redux';
+import convertKelvinToCelsius from './../helpers/Converter';
 
 const Home = () => {
   const observation = useSelector(state => state.observation);
@@ -25,9 +26,9 @@ const Home = () => {
         
         storeObservation({
           city,
-          temp,
-          min: temp_min,
-          max: temp_max
+          temp: convertKelvinToCelsius(temp),
+          min: convertKelvinToCelsius(temp_min),
+          max: convertKelvinToCelsius(temp_max)
         });
       })
       .catch((err) => {
