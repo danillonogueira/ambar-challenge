@@ -1,4 +1,4 @@
-import { Button, notification } from 'antd';
+import { Button } from 'antd';
 import { useDispatch } from 'react-redux';
 import { getObservation } from '../services/GetObservation';
 import convertKelvinToCelsius from './../helpers/Helpers';
@@ -39,9 +39,9 @@ const CityButton = ({ city }) => {
     startFetching();
     getObservation(city)
       .then((response) => {
-        const data = response.data;
-        const newObservation = filterCityData(data.main);
+        const { data } = response;
         const { icon } = data.weather[0];
+        const newObservation = filterCityData(data.main);
         
         postObservation(newObservation)
           .then(() => showSuccessNotification())
