@@ -1,5 +1,4 @@
-import { Row, Col, Button, Spin } from 'antd';
-import Display from './../components/Display';
+import { Row, Col, Button, Spin, Card } from 'antd';
 import { getCityData } from '../services/GetCityData';
 import { useSelector, useDispatch } from 'react-redux';
 import convertKelvinToCelsius from './../helpers/Converter';
@@ -15,7 +14,10 @@ const Home = () => {
   };
 
   const storeObservation = (newObservation) => {
-    dispatch({ type: 'STORE_FETCHED_OBSERVATION', newObservation });
+    dispatch({
+      type: 'STORE_FETCHED_OBSERVATION', 
+      newObservation 
+    });
   };
 
   const handleClick = (city) => {
@@ -77,12 +79,15 @@ const Home = () => {
           }
           {
             (hasObservation && !isLoading) && (
-              <Display 
-                local={observation.city} 
-                current={observation.temp} 
-                max={observation.max} 
-                min={observation.min} 
-              />
+              <Card 
+                title={observation.city}
+                bordered={true} 
+                style={{ width: 300 }}
+              >
+                <p>{observation.temp}<sup>o</sup> C</p>
+                <p>Máx: {observation.max}<sup>o</sup> C</p>
+                <p>Mín: {observation.min}<sup>o</sup> C</p>
+              </Card>
             )
           }
         </Col>
