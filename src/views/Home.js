@@ -1,4 +1,4 @@
-import { Row, Col, Button } from 'antd';
+import { Row, Col, Button, Spin } from 'antd';
 import Display from './../components/Display';
 import { getCityData } from '../services/GetCityData';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,8 +10,8 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const startFetching = () => {
-    dispatch({ type: 'FETCH_OBSERVATION'});
-  ;}
+    dispatch({ type: 'FETCH_OBSERVATION' });
+  };
 
   const storeObservation = (newObservation) => {
     dispatch({ type: 'STORE_FETCHED_OBSERVATION', newObservation });
@@ -64,7 +64,16 @@ const Home = () => {
       </Row>
       <Row>
         <Col span={24}>
-          { isLoading && <span>Buscando informações da cidade...</span> }
+          {(!hasObservation && !isLoading) && <span>Clique em uma cidade para buscar informações</span>}
+          {
+            isLoading && (
+              <>
+                <span>Buscando informações da cidade...</span>
+                <br />
+                <Spin size="large" />
+              </>
+            )
+          }
           {
             (hasObservation && !isLoading) && (
               <Display 
