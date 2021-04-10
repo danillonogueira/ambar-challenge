@@ -18,17 +18,23 @@ const Home = () => {
     });
   };
 
+  const wrapObservationData = (tempData) => {
+    const { temp, temp_min, temp_max } = tempData;
+
+    return {
+      temp: convertKelvinToCelsius(temp),
+      min: convertKelvinToCelsius(temp_min),
+      max: convertKelvinToCelsius(temp_max)
+    };
+  };
+
   const handleClick = (city) => {
     startFetching();
     getCityData(city)
-      .then((response) => {
-        const { temp, temp_min, temp_max } = response.data.main;
-        
+      .then((response) => {     
         storeObservation({
-          city,
-          temp: convertKelvinToCelsius(temp),
-          min: convertKelvinToCelsius(temp_min),
-          max: convertKelvinToCelsius(temp_max)
+          ...wrapObservationData(response.data.main),
+          city
         });
       })
       .catch((err) => {
