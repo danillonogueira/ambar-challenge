@@ -18,14 +18,16 @@ const CityButton = ({ city }) => {
     });
   };
 
-  const wrapObservationData = (tempData) => {
-    const { temp, temp_min, temp_max } = tempData;
+  const wrapObservationData = (response) => {
+    const { temp, temp_min, temp_max } = response.data.main;
+    const { icon } = response.data.weather[0];
 
     return {
       temp: convertKelvinToCelsius(temp),
       min: convertKelvinToCelsius(temp_min),
-      max: convertKelvinToCelsius(temp_max)
-    };
+      max: convertKelvinToCelsius(temp_max),
+      icon
+    }
   };
 
   const showSuccessNotification = () => {
@@ -47,15 +49,15 @@ const CityButton = ({ city }) => {
   const handleClick = (city) => {
     startFetching();
     getCityData(city)
-      .then((response) => {     
+      .then((response) => {
         storeObservation({
-          ...wrapObservationData(response.data.main),
+          ...wrapObservationData(response),
           city
         });
         showSuccessNotification();
       })
       .catch((err) => {
-        console.log(err);
+        showFailureNotification();
       });
   };
 

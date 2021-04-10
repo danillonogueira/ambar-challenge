@@ -11,6 +11,10 @@ const StyledDisplay = styled.div`
   align-items: center;
   margin: 20px 0;
 `;
+const CardContent = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+`;
 
 const Display = () => {
   const { observation, isLoading, hasObservation } = useSelector(state => state);
@@ -45,14 +49,17 @@ const Display = () => {
           <Card 
             title={observation.city}
             bordered={true} 
-            style={{ 
-              width: 300,
-              textAlign: 'center',
-            }}
-          >
-            <p><strong>Atual:</strong> {observation.temp}<sup>o</sup> C</p>
-            <p><strong>Mín:</strong> {observation.min}<sup>o</sup> C</p>
-            <p><strong>Máx:</strong> {observation.max}<sup>o</sup> C</p>
+            style={{ width: 300 }}
+          > 
+            <CardContent>
+              <div>
+                <p><strong>Atual:</strong> {observation.temp}<sup>o</sup> C</p>
+                <p><strong>Mín:</strong> {observation.min}<sup>o</sup> C</p>
+                <p><strong>Máx:</strong> {observation.max}<sup>o</sup> C</p>
+              </div>     
+              <img src={`http://openweathermap.org/img/wn/${observation.icon}@2x.png`} />
+            </CardContent>
+            
           </Card>
         )
       }

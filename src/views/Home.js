@@ -1,4 +1,4 @@
-import { Row, Col, Button, Spin, Card } from 'antd';
+import { Row, Col, Button } from 'antd';
 import CityButton from './../components/CityButton';
 import styled from 'styled-components';
 import { UnorderedListOutlined } from '@ant-design/icons';
