@@ -1,18 +1,21 @@
 import { Row, Col, Button } from 'antd';
 import Display from './../components/Display';
-import { getCityData } from './../services/Get';
+import { getCityData } from '../services/GetCityData';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Home = () => {
   const observation = useSelector(state => state.observation);
+  const isLoading = useSelector(state => state.isLoading)
   const hasObservation = useSelector(state => state.hasObservation);
   const dispatch = useDispatch();
 
-  const storeObservation = function(newObservation) {
+  const storeObservation = (newObservation) => {
     dispatch({ type: 'STORE_OBSERVATION', newObservation });
   };
 
-  const handleClick = function(city) {
+  const handleClick = (city) => {
+    dispatch({ type: 'FETCH_DATA'});
+
     getCityData(city)
       .then((response) => {
         const { temp, temp_min, temp_max } = response.data.main;
@@ -26,9 +29,6 @@ const Home = () => {
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
-        console.log(observation, hasObservation);
       });
   };
 
@@ -59,16 +59,21 @@ const Home = () => {
           </Button>
         </Col>
       </Row>
-      {
-        hasObservation && (
-          <Display 
-            local={observation.city} 
-            current={observation.temp} 
-            max={observation.max} 
-            min={observation.min} 
-          />
-        )
-      }
+      <Row>
+        <Col span={24}>
+          { isLoading && <span>Buscando informações da cidade...</span> }
+          {
+            (hasObservation && !isLoading) && (
+              <Display 
+                local={observation.city} 
+                current={observation.temp} 
+                max={observation.max} 
+                min={observation.min} 
+              />
+            )
+          }
+        </Col>
+      </Row>
       <Row>
         <Col span={24}>
           <Button 

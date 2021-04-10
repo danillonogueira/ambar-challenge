@@ -2,30 +2,27 @@ import { createStore } from 'redux';
 
 const initialState = {
   hasObservation: false,
-  observation: {}
+  observation: {},
+  isLoading: false
 };
-
-const temperatures = function(state = initialState, action) {
+const temperatures = (state = initialState, action) => {
   switch (action.type) {
+    case 'FETCH_DATA':
+      return {
+        ...state,
+        isLoading: true
+      }
     case 'STORE_OBSERVATION':
       return { 
         ...state,
+        isLoading: false,
         hasObservation: true,
         observation: action.newObservation
       };
-    // case 'STORE_HISTORY':
-    //   return {
-    //     ...state
-    //   }
-    // case 'DATA_HAS_CHANGED':
-    //   return {
-    //     ...state
-    //   }
     default:
       return state;
   }
-}
-
+};
 const store = createStore(temperatures);
 
 export default store;
