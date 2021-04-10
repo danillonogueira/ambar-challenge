@@ -1,12 +1,11 @@
 import { createStore } from 'redux';
 
 const initialState = {
-  // history: [],
-  // dataHasChanged: false,
   hasObservation: false,
   observation: {},
   isLoading: false
 };
+
 const temperatures = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_OBSERVATION':
@@ -21,8 +20,8 @@ const temperatures = (state = initialState, action) => {
         hasObservation: true,
         observation: action.newObservation
       };
-    // case 'STORE_FETCHED_HISTORY':
-    // case 'DATA_HAS_CHANGED':
+    case 'OBSERVATION_FETCHING_ERROR':
+      return initialState;
     default:
       return state;
   }

@@ -3,6 +3,8 @@ import CityButton from './../components/CityButton';
 import styled from 'styled-components';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import Display from './../components/Display';
+// import { useEffect } from 'react';
+// import { db } from './../services/Firebase';
 
 const StyledHome = styled.div`
   width: 100%;
@@ -16,6 +18,15 @@ const StyledHome = styled.div`
 `;
 
 const Home = () => {
+  // useEffect(() => {
+  //   db.ref('observations')
+  //     .on('value', (snapshot) => {
+  //       console.log(
+  //         snapshot.val()
+  //       );
+  //     });
+  // })
+
   return (
     <StyledHome>
       <Row>
