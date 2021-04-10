@@ -28,9 +28,17 @@ const CityButton = ({ city }) => {
     };
   };
 
-  const openNotification = () => {
+  const showSuccessNotification = () => {
     notification.success({
       message: 'Informações obtidas com sucesso!',
+      placement: 'topRight',
+      duration: 3
+    });
+  };
+
+  const showFailureNotification = () => {
+    notification.error({
+      message: 'Não foi possível obter as informações',
       placement: 'topRight',
       duration: 3
     });
@@ -44,7 +52,7 @@ const CityButton = ({ city }) => {
           ...wrapObservationData(response.data.main),
           city
         });
-        openNotification();
+        showSuccessNotification();
       })
       .catch((err) => {
         console.log(err);
