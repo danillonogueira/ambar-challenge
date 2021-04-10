@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import convertKelvinToCelsius from '../helpers/Helpers';
 
 const Home = () => {
-  const observation = useSelector(state => state.observation);
-  const isLoading = useSelector(state => state.isLoading)
-  const hasObservation = useSelector(state => state.hasObservation);
+  const { observation, isLoading, hasObservation } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const startFetching = () => {
