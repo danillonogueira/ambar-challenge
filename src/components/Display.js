@@ -26,7 +26,7 @@ const Display = () => {
           <div>
             <span>Clique em uma cidade acima</span>
             <br />
-            <span>para buscar informações</span>
+            <span>para buscar a temperatura</span>
           </div>
         )
       }

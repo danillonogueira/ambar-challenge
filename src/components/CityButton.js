@@ -4,6 +4,7 @@ import { getObservation } from '../services/GetObservation';
 import convertKelvinToCelsius from './../helpers/Helpers';
 import { ThunderboltOutlined } from '@ant-design/icons';
 import postObservation from './../services/PostObservation';
+import { showSuccessNotification, showFailureNotification, showWarningNotification } from './../helpers/Notifications';
 
 const CityButton = ({ city }) => {
   const dispatch = useDispatch();
@@ -19,53 +20,43 @@ const CityButton = ({ city }) => {
     });
   };
 
-  const showSuccessNotification = () => {
-    notification.success({
-      message: 'Informações obtidas com sucesso!',
-      placement: 'topRight',
-      duration: 3
-    });
-  };
-
-  const showFailureNotification = () => {
-    notification.error({
-      message: 'Não foi possível obter as informações',
-      placement: 'topRight',
-      duration: 3
-    });
-  };
-
   const stopFetching = () => {
-    dispatch({ type: 'OBSERVATION_FETCHING_ERROR'} );
+    dispatch({ type: 'OBSERVATION_FETCHING_ERROR'});
+  };
+
+  const filterCityData = (data) => {
+    const { temp, temp_min, temp_max } = data;
+
+    return {
+      city,
+      temp: convertKelvinToCelsius(temp),
+      min: convertKelvinToCelsius(temp_min),
+      max: convertKelvinToCelsius(temp_max)
+    };
   };
 
   const handleClick = (city) => {
     startFetching();
     getObservation(city)
       .then((response) => {
-        const { temp, temp_min, temp_max } = response.data.main;
-        const { icon } = response.data.weather[0];
-        const newObservation = {
-          city,
-          temp: convertKelvinToCelsius(temp),
-          min: convertKelvinToCelsius(temp_min),
-          max: convertKelvinToCelsius(temp_max)
-        };
-
+        const data = response.data;
+        const newObservation = filterCityData(data.main);
+        const { icon } = data.weather[0];
+        
         postObservation(newObservation)
-          .then(() => {
+          .then(() => showSuccessNotification())
+          .catch(() => {
+            showWarningNotification();
+            stopFetching();
+          })
+          .finally(() => {
             storeObservation({
               ...newObservation,
               icon
             });
-            showSuccessNotification();
-          })
-          .catch(() => {
-            showFailureNotification();
-            stopFetching();
-          })
+          });
       })
-      .catch((err) => {
+      .catch(() => {
         showFailureNotification();
         stopFetching();
       });
