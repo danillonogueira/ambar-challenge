@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { Card, Spin } from 'antd';
-import { useSelector } from 'react-redux'; 
+import { Card } from 'antd';
+import { useSelector } from 'react-redux';
+import Loader from './Loader';
 
 const StyledDisplay = styled.div`
   height: 213px;
@@ -30,20 +31,7 @@ const Display = () => {
           </div>
         )
       }
-      { 
-        (isLoading) && (
-          <div>
-            <Spin 
-              size="large"
-              style={{
-                margin: '20px 0'
-              }} 
-            />
-            <br />
-            <span>Buscando informações da cidade...</span>
-          </div>
-        )
-      }
+      {(isLoading) && <Loader />}
       {
         (hasObservation && !isLoading) && (
           <Card 

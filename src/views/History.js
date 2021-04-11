@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
-import { Spin } from 'antd';
 // import getObservations from './../services/GetObservations';
 import { db } from '../services/Firebase';
+import Loader from './../components/Loader';
 
 const History = () => {
   const { isLoading, observations } = useSelector(state => state);
@@ -36,20 +36,7 @@ const History = () => {
 
   return (
     <>
-      { 
-        (isLoading) && (
-          <div>
-            <Spin 
-              size="large"
-              style={{
-                margin: '20px 0'
-              }} 
-            />
-            <br />
-            <span>Buscando informações da cidade...</span>
-          </div>
-        )
-      }
+      {isLoading && <Loader />}
       {
         observations.map((observation, index) => {
           return <ul key={index + 1}>
