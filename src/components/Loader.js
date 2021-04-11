@@ -5,9 +5,7 @@ const Loader = () => {
     <div>
       <Spin 
         size="large"
-        style={{
-          margin: '20px 0'
-        }} 
+        style={{ margin: '20px 0' }} 
       />
       <br />
       <span>Buscando informações da cidade...</span>

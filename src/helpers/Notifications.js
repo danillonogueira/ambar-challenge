@@ -8,20 +8,20 @@ const defaultNotification = {
 export const showSuccessNotification = () => {
   notification.success({
     ...defaultNotification,
-    message: 'Temperatura obtida com sucesso!',
+    message: 'Informações obtidas com sucesso!',
   });
 };
 
 export const showFailureNotification = () => {
   notification.error({
     ...defaultNotification,
-    message: 'Não foi possível obter a temperatura',
+    message: 'Não foi possível obter as informações',
   });
 };
 
 export const showWarningNotification = () => {
   notification.warning({
     ...defaultNotification,
-    message: 'A temperatura foi obtida, mas não foi possível arquivá-la',
+    message: 'As informações foram obtidas, mas não foi possível arquivá-las',
   });
 };

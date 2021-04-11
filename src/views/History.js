@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
-// import getObservations from './../services/GetObservations';
-import { db } from '../services/Firebase';
+import startFirebase from '../services/StartFirebase';
 import Loader from './../components/Loader';
+import { showSuccessNotification, showFailureNotification } from './../helpers/Notifications';
 
 const History = () => {
   const { isLoading, observations } = useSelector(state => state);
@@ -12,13 +12,17 @@ const History = () => {
     dispatch({ type: 'FETCH_DATA' });
   }, [dispatch]);
 
-  const getNewObservations = (snapshot) => {
+  const stopFetching = useCallback(() => {
+    dispatch({ type: 'OBSERVATION_FETCHING_ERROR' });
+  }, [dispatch]);
+
+  const getObservations = (snapshot) => {
     return Object.entries(snapshot.val())
       .map((observation) => observation[1]);
   };
 
   const storeObservations = useCallback((snapshot) => {
-    const newObservations = getNewObservations(snapshot);
+    const newObservations = getObservations(snapshot);
 
     dispatch({ 
       type: 'STORE_OBSERVATIONS',
@@ -28,11 +32,20 @@ const History = () => {
 
   useEffect(() => {
     startFetching();
-    db.ref('observations')
-      .on('value', (snapshot) => {
+    startFirebase()
+      .then((snapshot) => {
         storeObservations(snapshot);
+        showSuccessNotification();
+      })
+      .catch(() => {
+        stopFetching();
+        showFailureNotification();
       });
-  }, [startFetching, storeObservations]);
+  }, [
+    startFetching, 
+    stopFetching, 
+    storeObservations
+  ]);
 
   return (
     <>
