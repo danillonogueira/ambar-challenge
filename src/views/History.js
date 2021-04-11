@@ -5,8 +5,12 @@ import { Spin } from 'antd';
 import { db } from '../services/Firebase';
 
 const History = () => {
-  const { observations } = useSelector(state => state);
+  const { isLoading, observations } = useSelector(state => state);
   const dispatch = useDispatch();
+
+  const startFetching = useCallback(() => {
+    dispatch({ type: 'FETCH_DATA' });
+  }, [dispatch]);
 
   const getNewObservations = (snapshot) => {
     return Object.entries(snapshot.val())
@@ -23,16 +27,17 @@ const History = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    startFetching();
     db.ref('observations')
       .on('value', (snapshot) => {
         storeObservations(snapshot);
       });
-  }, [storeObservations]);
+  }, [startFetching, storeObservations]);
 
   return (
     <>
       { 
-        (observations.length === 0) && (
+        (isLoading) && (
           <div>
             <Spin 
               size="large"
