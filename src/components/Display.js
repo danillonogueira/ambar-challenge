@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { Card } from 'antd';
+import Info from './Info';
 import { useSelector } from 'react-redux';
 import Loader from './Loader';
+import Message from './Message';
 
 const StyledDisplay = styled.div`
   height: 213px;
@@ -12,45 +13,15 @@ const StyledDisplay = styled.div`
   align-items: center;
   margin: 20px 0;
 `;
-const CardContent = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-`;
 
 const Display = () => {
   const { observation, isLoading, hasObservation } = useSelector(state => state);
 
   return (
     <StyledDisplay>
-      {
-        (!hasObservation && !isLoading) && (
-          <div>
-            <span>Clique em uma cidade acima</span>
-            <br />
-            <span>para buscar a temperatura</span>
-          </div>
-        )
-      }
+      {(!hasObservation && !isLoading) && <Message />}
       {(isLoading) && <Loader />}
-      {
-        (hasObservation && !isLoading) && (
-          <Card 
-            title={observation.city}
-            bordered={true} 
-            style={{ width: 300 }}
-          > 
-            <CardContent>
-              <div>
-                <p><strong>Atual:</strong> {observation.temp}<sup>o</sup> C</p>
-                <p><strong>Mín:</strong> {observation.min}<sup>o</sup> C</p>
-                <p><strong>Máx:</strong> {observation.max}<sup>o</sup> C</p>
-              </div>     
-              <img src={`http://openweathermap.org/img/wn/${observation.icon}@2x.png`} alt="weather icon" />
-            </CardContent>
-            
-          </Card>
-        )
-      }
+      {(hasObservation && !isLoading) && <Info observation={observation} />}
     </StyledDisplay>
   );
 };
