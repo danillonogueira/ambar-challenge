@@ -3,6 +3,7 @@ import CityButton from './../components/CityButton';
 import styled from 'styled-components';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import Display from './../components/Display';
+import { Link } from 'react-router-dom';
 
 const StyledHome = styled.div`
   display: flex;
@@ -28,14 +29,16 @@ const Home = () => {
       </Row>
       <Row>
         <Col span={24}>
-          <Button 
-            type="primary" 
-            size="large"
-            shape={'round'}
-            icon={<UnorderedListOutlined />}
-          >
-            Mostrar Mín/Máx
-          </Button>
+          <Link to="/history">
+            <Button 
+              type="primary" 
+              size="large"
+              shape={'round'}
+              icon={<UnorderedListOutlined />}
+            >
+              Mostrar Mín/Máx
+            </Button>
+          </Link>
         </Col>
       </Row>
     </StyledHome>

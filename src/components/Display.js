@@ -33,14 +33,14 @@ const Display = () => {
       { 
         (isLoading) && (
           <div>
-            <span>Buscando informações da cidade...</span>
-            <br />
             <Spin 
               size="large"
               style={{
-                margin: '10px 0'
+                margin: '20px 0'
               }} 
             />
+            <br />
+            <span>Buscando informações da cidade...</span>
           </div>
         )
       }
@@ -57,7 +57,7 @@ const Display = () => {
                 <p><strong>Mín:</strong> {observation.min}<sup>o</sup> C</p>
                 <p><strong>Máx:</strong> {observation.max}<sup>o</sup> C</p>
               </div>     
-              <img src={`http://openweathermap.org/img/wn/${observation.icon}@2x.png`} />
+              <img src={`http://openweathermap.org/img/wn/${observation.icon}@2x.png`} alt="weather icon" />
             </CardContent>
             
           </Card>

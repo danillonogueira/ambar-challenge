@@ -10,7 +10,7 @@ const CityButton = ({ city }) => {
   const dispatch = useDispatch();
 
   const startFetching = () => {
-    dispatch({ type: 'FETCH_OBSERVATION' });
+    dispatch({ type: 'FETCH_DATA' });
   };
 
   const storeObservation = (newObservation) => {
