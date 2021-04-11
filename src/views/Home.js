@@ -5,14 +5,10 @@ import { UnorderedListOutlined } from '@ant-design/icons';
 import Display from './../components/Display';
 
 const StyledHome = styled.div`
-  width: 100%;
-  height: 100%;
-  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #EEE;
 `;
 
 const Home = () => {
