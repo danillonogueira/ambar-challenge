@@ -68,7 +68,8 @@ const CityButton = ({ city }) => {
       icon={<ThunderboltOutlined />}
       size="large"
       onClick={() => handleClick(city)}
-      style={{ margin: '0 10px' }} 
+      block
+      style={{ minWidth: 200 }}
     >
       {city}
     </Button>
