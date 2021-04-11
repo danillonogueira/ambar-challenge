@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 // import { useSelector } from 'react-redux';
 
-const columns = () => [
+const columns = [
   {
     title: 'Cidade',
     dataIndex: 'city',
