@@ -1,15 +1,23 @@
+import styled from 'styled-components';
 import { Spin } from 'antd';
+
+const StyledLoader = styled.div`
+  font-size: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Loader = () => {
   return (
-    <div>
+    <StyledLoader>
       <Spin 
         size="large"
-        style={{ margin: '20px 0' }} 
+        style={{ margin: '10px 0' }} 
       />
-      <br />
-      <span>Buscando informações da cidade...</span>
-    </div>
+      <span>Buscando informações...</span>
+    </StyledLoader>
   );
 };
 

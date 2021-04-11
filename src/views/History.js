@@ -3,6 +3,40 @@ import { useSelector, useDispatch  } from 'react-redux';
 import startFirebase from '../services/StartFirebase';
 import Loader from './../components/Loader';
 import { showSuccessNotification, showFailureNotification } from './../helpers/Notifications';
+// import Observations from './../components/Observations';
+import styled from 'styled-components';
+import { Table } from 'antd';
+
+
+const StyledHistory = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const columns = [
+  {
+    title: 'Cidade',
+    dataIndex: 'city',
+    key: 'city'
+  },
+  {
+    title: 'Temperatura',
+    dataIndex: 'temp',
+    key: 'temp'
+  },
+  {
+    title: 'Mínima',
+    dataIndex: 'min',
+    key: 'min'
+  },
+  {
+    title: 'Máxima',
+    dataIndex: 'max',
+    key: 'max'
+  }
+];
 
 const History = () => {
   const { isLoading, observations } = useSelector(state => state);
@@ -18,7 +52,12 @@ const History = () => {
 
   const getObservations = (snapshot) => {
     return Object.entries(snapshot.val())
-      .map((observation) => observation[1]);
+      .map((observation, index) => {
+        return {
+          ...observation[1],
+          key: index + 1
+        };
+      });
   };
 
   const storeObservations = useCallback((snapshot) => {
@@ -48,19 +87,10 @@ const History = () => {
   ]);
 
   return (
-    <>
+    <StyledHistory>
       {isLoading && <Loader />}
-      {
-        observations.map((observation, index) => {
-          return <ul key={index + 1}>
-            <li>{ observation.city }</li>
-            <li>{ observation.temp }</li>
-            <li>{ observation.min }</li>
-            <li>{ observation.max }</li>
-          </ul>
-        })
-      }
-    </>
+      {!isLoading && <Table pagination={{ pageSize: 10 }}columns={columns} dataSource={observations} />}
+    </StyledHistory>
   );
 }
 

@@ -16,11 +16,6 @@ const Home = () => {
   return (
     <StyledHome>
       <Row gutter={[10, 10]}>
-        {/* <Col span={24}>
-          <CityButton city={'Ribeirão Preto'} />
-          <CityButton city={'Araraquara'} />
-          <CityButton city={'São Carlos'} />
-        </Col> */}
         <Col lg={8} xs={24}>
           <CityButton city={'Ribeirão Preto'} />
         </Col>

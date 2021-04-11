@@ -1,9 +1,15 @@
+import styled from 'styled-components';
+
+const StyledText = styled.span`
+  font-size: 22px;
+`;
+
 const Message = () => {
   return (
     <div>
-      <span>Clique em uma cidade acima</span>
+      <StyledText>Clique em uma cidade acima</StyledText>
       <br />
-      <span>para buscar a temperatura</span>
+      <StyledText>para buscar a temperatura</StyledText>
     </div>
   );
 };

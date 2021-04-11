@@ -7,7 +7,6 @@ import Message from './Message';
 const StyledDisplay = styled.div`
   height: 213px;
   text-align: center;
-  font-size: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
