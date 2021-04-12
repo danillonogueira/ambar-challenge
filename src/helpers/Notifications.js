@@ -1,4 +1,4 @@
-import { notification } from 'antd';
+import { notification, Button } from 'antd';
 
 const defaultNotification = {
   placement: 'topRight',
@@ -23,5 +23,25 @@ export const showWarningNotification = () => {
   notification.warning({
     ...defaultNotification,
     message: 'As informações foram obtidas, mas não foi possível arquivá-las',
+  });
+};
+
+export const showUpdateNotification = () => {
+  const key = `open${Date.now()}`;
+  const btn = (
+    <Button 
+      type="primary" 
+      size="small" 
+      onClick={() => {notification.close(key)}}
+    >
+      Atualizar
+    </Button>
+  );
+
+  notification.warning({
+    ...defaultNotification,
+    message: 'Existem informações novas. Deseja atualizar?',
+    key,
+    btn
   });
 };

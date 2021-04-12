@@ -2,10 +2,11 @@ import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
 import startFirebase from '../services/StartFirebase';
 import Loader from './../components/Loader';
-import { showSuccessNotification, showFailureNotification } from './../helpers/Notifications';
+import { showSuccessNotification, showFailureNotification, showUpdateNotification } from './../helpers/Notifications';
 // import Observations from './../components/Observations';
 import styled from 'styled-components';
 import { Table } from 'antd';
+import { db } from './../services/Firebase';
 
 
 const StyledHistory = styled.div`
@@ -71,18 +72,12 @@ const History = () => {
 
   useEffect(() => {
     startFetching();
-    startFirebase()
-      .then((snapshot) => {
+    db.ref('observations')
+      .on('value', (snapshot) => {
         storeObservations(snapshot);
-        showSuccessNotification();
-      })
-      .catch(() => {
-        stopFetching();
-        showFailureNotification();
       });
   }, [
     startFetching, 
-    stopFetching, 
     storeObservations
   ]);
 
