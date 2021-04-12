@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch  } from 'react-redux';
-import startFirebase from '../services/StartFirebase';
+// import startFirebase from '../services/StartFirebase';
 import Loader from './../components/Loader';
-import { showSuccessNotification, showFailureNotification, showUpdateNotification } from './../helpers/Notifications';
+// import { showSuccessNotification, showFailureNotification, showUpdateNotification } from './../helpers/Notifications';
 // import Observations from './../components/Observations';
 import styled from 'styled-components';
 import { Table } from 'antd';
@@ -16,7 +16,7 @@ const StyledHistory = styled.div`
   align-items: center;
 `;
 
-const columns = [
+const tableColumns = [
   {
     title: 'Cidade',
     dataIndex: 'city',
@@ -47,9 +47,9 @@ const History = () => {
     dispatch({ type: 'FETCH_DATA' });
   }, [dispatch]);
 
-  const stopFetching = useCallback(() => {
-    dispatch({ type: 'OBSERVATION_FETCHING_ERROR' });
-  }, [dispatch]);
+  // const stopFetching = useCallback(() => {
+  //   dispatch({ type: 'OBSERVATION_FETCHING_ERROR' });
+  // }, [dispatch]);
 
   const getObservations = (snapshot) => {
     return Object.entries(snapshot.val())
@@ -88,7 +88,7 @@ const History = () => {
         !isLoading && (
           <Table 
             pagination={{ pageSize: 10 }} 
-            columns={columns}
+            columns={tableColumns}
             dataSource={observations} 
           />
         )

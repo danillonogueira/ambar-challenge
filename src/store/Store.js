@@ -4,10 +4,11 @@ const initialState = {
   hasObservation: false,
   observation: {},
   isLoading: false,
-  observations: []
+  observations: [],
+  startedListeningToFb: false
 };
 
-const temperatures = (state = initialState, action) => {
+const temperatureObservations = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_DATA':
       return {
@@ -24,15 +25,29 @@ const temperatures = (state = initialState, action) => {
     case 'OBSERVATION_FETCHING_ERROR':
       return initialState;
     case 'STORE_OBSERVATIONS':
-      return {
+      const defaultNewState = {
         ...state,
         isLoading: false,
         observations: [...action.newObservations]
+      };
+
+      if (!state.startedListeningToFb) {
+        return {
+          ...defaultNewState,
+          startedListeningToFb: true
+        }
+      }
+
+      return defaultNewState;
+    case 'RESET_FIREBASE_LISTENING':
+      return {
+        ...state,
+        startedListeningToFb: false
       }
     default:
       return state;
   }
 };
-const store = createStore(temperatures);
+const Store = createStore(temperatureObservations);
 
-export default store;
+export default Store;

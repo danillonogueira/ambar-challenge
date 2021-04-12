@@ -3,7 +3,7 @@ import Home from './views/Home';
 import History from './views/History';
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './store/Store';
 import Container from './components/Container';
 import {
   BrowserRouter as Router,
@@ -17,7 +17,10 @@ const App = () => {
       <Provider store={store}>
         <Container>
           <Switch>
-            <Route exact path="/">
+            <Route 
+              exact 
+              path="/"
+            >
               <Home />
             </Route>
             <Route path="/history">
