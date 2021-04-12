@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getObservation } from '../services/GetObservation';
 import convertKelvinToCelsius from './../helpers/Helpers';
 import { ThunderboltOutlined } from '@ant-design/icons';
@@ -7,6 +7,7 @@ import postObservation from './../services/PostObservation';
 import { showSuccessNotification, showFailureNotification, showWarningNotification } from './../helpers/Notifications';
 
 const CityButton = ({ city }) => {
+  const { isLoading } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const startFetching = () => {
@@ -70,6 +71,7 @@ const CityButton = ({ city }) => {
       onClick={() => handleClick(city)}
       block
       style={{ minWidth: 200 }}
+      disabled={isLoading}
     >
       {city}
     </Button>

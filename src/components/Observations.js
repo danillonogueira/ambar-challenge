@@ -5,22 +5,22 @@ const columns = [
   {
     title: 'Cidade',
     dataIndex: 'city',
-    key: 'key'
+    key: 'city'
   },
   {
     title: 'Temperatura',
     dataIndex: 'temp',
-    key: 'key'
+    key: 'temp'
   },
   {
     title: 'Mínima',
     dataIndex: 'min',
-    key: 'key'
+    key: 'min'
   },
   {
     title: 'Máxima',
     dataIndex: 'max',
-    key: 'key'
+    key: 'max'
   }
 ];
 
