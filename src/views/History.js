@@ -89,7 +89,15 @@ const History = () => {
   return (
     <StyledHistory>
       {isLoading && <Loader />}
-      {!isLoading && <Table pagination={{ pageSize: 10 }}columns={columns} dataSource={observations} />}
+      {
+        !isLoading && (
+          <Table 
+            pagination={{ pageSize: 10 }} 
+            columns={columns}
+            dataSource={observations} 
+          />
+        )
+      }
     </StyledHistory>
   );
 }

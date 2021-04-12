@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import Display from './../components/Display';
 import { Link } from 'react-router-dom';
+import { db } from './../services/Firebase';
 
 const StyledHome = styled.div`
   display: flex;

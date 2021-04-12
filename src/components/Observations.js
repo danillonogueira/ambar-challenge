@@ -1,5 +1,4 @@
 import { Table } from 'antd';
-// import { useSelector } from 'react-redux';
 
 const columns = [
   {
@@ -24,10 +23,6 @@ const columns = [
   }
 ];
 
-const Observations = ({ observations }) => {
-  return (
-    <Table columns={columns} dataSource={observations} />
-  );
-};
+const Observations = ({ observations }) => <Table columns={columns} dataSource={observations} />;
 
 export default Observations;
