@@ -1,5 +1,5 @@
-import { takeLatest, put, call, all } from 'redux-saga/effects';
 import { showUpdateNotification } from './../helpers/Notifications';
+import { call, put, takeLatest, all } from 'redux-saga/effects';
 
 export const checkIfShouldUpdateData = () => {
   return new Promise((resolve, reject) => {
