@@ -21,7 +21,10 @@ const Info = ({ observation }) => {
           <p><strong>Mín:</strong> {min}<sup>o</sup> C</p>
           <p><strong>Máx:</strong> {max}<sup>o</sup> C</p>
         </div>     
-        <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt="weather icon" />
+        <img 
+          src={`http://openweathermap.org/img/wn/${icon}@2x.png`} 
+          alt="weather icon" 
+        />
       </CardContent>
     </Card>
   );

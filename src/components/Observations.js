@@ -23,6 +23,13 @@ const columns = [
   }
 ];
 
-const Observations = ({ observations }) => <Table columns={columns} dataSource={observations} />;
+const Observations = ({ observations }) => {
+  return(
+    <Table 
+      columns={columns} 
+      dataSource={observations} 
+    />
+  );
+};
 
 export default Observations;
