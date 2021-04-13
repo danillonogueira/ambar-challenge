@@ -6,8 +6,7 @@ const initialState = {
   hasObservation: false,
   observation: {},
   isLoading: false,
-  observations: [],
-  startedListeningToFb: false
+  observations: []
 };
 const temperatures = (state = initialState, action) => {
   switch (action.type) {
@@ -26,24 +25,21 @@ const temperatures = (state = initialState, action) => {
     case 'OBSERVATION_FETCHING_ERROR':
       return initialState;
     case 'STORE_OBSERVATIONS':
-      const defaultNewState = {
+      return {
         ...state,
         isLoading: false,
         observations: [...action.newObservations]
       };
-
-      if (!state.startedListeningToFb) {
-        return {
-          ...defaultNewState,
-          startedListeningToFb: true
-        }
+    case 'LISTEN_TO_FIREBASE':
+      return {
+        ...state,
+        isLoading: false,
+        startedListeningToFirebase: true
       }
-
-      return defaultNewState;
     case 'RESET_FIREBASE_LISTENING':
       return {
         ...state,
-        startedListeningToFb: false
+        startedListeningToFirebase: false
       }
     default:
       return state;

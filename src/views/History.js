@@ -52,12 +52,24 @@ class History extends Component {
     super(props);
   }
 
-  componentWillMount() {
+  state = {
+    startedListeningToFirebase: false
+  }
+
+  componentDidMount() {
     this.props.startLoading();
     db.ref('observations')
       .on('value', (snapshot) => {
-        console.log('snapshot');
-        this.props.storeObservations(getObservations(snapshot));
+        const { startedListeningToFirebase } = this.state;
+
+        if (!startedListeningToFirebase) {
+          this.setState({ startedListeningToFirebase: true });
+        }
+
+        this.props.storeObservations({
+          newObservations: getObservations(snapshot),
+          startedListeningToFirebase
+        });
       });
   }
 

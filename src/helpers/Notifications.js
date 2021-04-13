@@ -26,22 +26,22 @@ export const showWarningNotification = () => {
   });
 };
 
-export const showUpdateNotification = () => {
-  const key = `open${Date.now()}`;
-  const btn = (
-    <Button 
-      type="primary" 
-      size="small" 
-      onClick={() => {notification.close(key)}}
-    >
-      Atualizar
-    </Button>
-  );
+// export const showUpdateNotification = () => {
+//   const key = `open${Date.now()}`;
+//   const btn = (
+//     <Button 
+//       type="primary" 
+//       size="small" 
+//       onClick={() => {notification.close(key)}}
+//     >
+//       Atualizar
+//     </Button>
+//   );
 
-  notification.warning({
-    ...defaultNotification,
-    message: 'Existem informações novas. Deseja atualizar?',
-    key,
-    btn
-  });
-};
+//   notification.warning({
+//     ...defaultNotification,
+//     message: 'Existem informações novas. Deseja atualizar?',
+//     key,
+//     btn
+//   });
+// };

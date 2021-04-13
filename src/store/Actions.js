@@ -1,7 +1,7 @@
-export function storeObservations(newObservations) {
+export function storeObservations(payload) {
   return {
     type: 'ASYNC_STORE_OBSERVATIONS',
-    newObservations
+    payload
   }
 }
 
