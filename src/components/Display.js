@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Info from './Info';
-import { useSelector } from 'react-redux';
 import Loader from './Loader';
 import Message from './Message';
 
@@ -13,9 +12,7 @@ const StyledDisplay = styled.div`
   text-align: center;
 `;
 
-const Display = () => {
-  const { observation, isLoading, hasObservation } = useSelector(state => state.temperatures);
-
+const Display = ({ isLoading, hasObservation, observation }) => {
   return (
     <StyledDisplay>
       {(!hasObservation && !isLoading) && <Message />}

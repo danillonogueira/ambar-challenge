@@ -19,7 +19,11 @@ const StyledHome = styled.div`
 `;
 
 const Home = () => {
-  const { isLoading } = useSelector(state => state.temperatures);
+  const { 
+    isLoading, 
+    hasObservation, 
+    observation 
+  } = useSelector(state => state.temperatures);
   const dispatch = useDispatch();
 
   const handleClick = (city) => {
@@ -78,7 +82,11 @@ const Home = () => {
       </Row>
       <Row>
         <Col span={24}>
-          <Display />
+          <Display
+            isLoading={isLoading}
+            hasObservation={hasObservation}
+            observation={observation}
+          />
         </Col>
       </Row>
       <Row>
