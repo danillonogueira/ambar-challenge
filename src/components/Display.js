@@ -5,12 +5,12 @@ import Loader from './Loader';
 import Message from './Message';
 
 const StyledDisplay = styled.div`
-  height: 213px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height: 213px;
+  justify-content: center;
   margin: 20px 0;
+  text-align: center;
 `;
 
 const Display = () => {

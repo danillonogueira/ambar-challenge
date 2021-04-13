@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { Spin } from 'antd';
 
 const StyledLoader = styled.div`
-  font-size: 22px;
+  align-items: center;
   display: flex;
+  font-size: 22px;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 `;
 
 const Loader = () => {
