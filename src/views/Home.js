@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import Display from './../components/Display';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getObservation } from '../services/GetObservation';
 import { filterCityData } from '../helpers/Filters';
 import { postObservation } from './../services/Firebase';
@@ -19,6 +19,7 @@ const StyledHome = styled.div`
 `;
 
 const Home = () => {
+  const { isLoading } = useSelector(state => state.temperatures);
   const dispatch = useDispatch();
 
   const handleClick = (city) => {
@@ -57,18 +58,21 @@ const Home = () => {
           <CityButton 
             city={'Ribeirão Preto'}
             clickHandler={handleClick}
+            isLoading={isLoading}
           />
         </Col>
         <Col lg={8} xs={24}>
           <CityButton 
             city={'Araraquara'}
             clickHandler={handleClick}
+            isLoading={isLoading}
           />
         </Col>
         <Col lg={8} xs={24}>
           <CityButton 
             city={'São Carlos'}
             clickHandler={handleClick}
+            isLoading={isLoading}
           />
         </Col>
       </Row>
@@ -85,6 +89,7 @@ const Home = () => {
               size="large"
               shape={'round'}
               icon={<UnorderedListOutlined />}
+              disabled={isLoading}
             >
               Mostrar Mín/Máx
             </Button>

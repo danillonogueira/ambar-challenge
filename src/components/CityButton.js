@@ -1,10 +1,7 @@
 import { Button } from 'antd';
 import { ThunderboltOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
 
-const CityButton = ({ clickHandler, city }) => {
-  const { isLoading } = useSelector(state => state.temperatures);
-
+const CityButton = ({ clickHandler, city, isLoading }) => {
   return (
     <Button 
       type="primary"

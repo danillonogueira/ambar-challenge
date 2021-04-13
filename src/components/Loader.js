@@ -4,8 +4,8 @@ import { Spin } from 'antd';
 const StyledLoader = styled.div`
   align-items: center;
   display: flex;
-  font-size: 22px;
   flex-direction: column;
+  font-size: 22px;
   justify-content: center;
 `;
 
