@@ -8,7 +8,6 @@ import Observations from './../components/Observations';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
 const StyledHistory = styled.div`
   display: flex;
   flex-direction: column;
