@@ -11,7 +11,6 @@ import { UnorderedListOutlined } from '@ant-design/icons';
 import Display from './../components/Display';
 import { Link } from 'react-router-dom';
 
-
 const StyledHome = styled.div`
   align-items: center;
   display: flex;
