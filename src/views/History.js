@@ -1,12 +1,13 @@
-import Loader from './../components/Loader';
-import { Component } from 'react';
 import styled from 'styled-components';
+import { Component } from 'react';
+import * as Actions from './../store/Actions';
+import { listenToFirebase, stopListeningToFirebase } from './../services/Firebase';
+import { getObservationsData } from './../helpers/Filters';
+import Loader from './../components/Loader';
 import { Table } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from './../store/Actions';
-import { getObservationsData } from './../helpers/Filters';
-import { listenToFirebase, stopListeningToFirebase } from './../services/Firebase';
+
 
 const StyledHistory = styled.div`
   display: flex;
@@ -38,9 +39,7 @@ const tableColumns = [
 ];
 
 class History extends Component {
-  state = {
-    startedListeningToFirebase: false
-  }
+  state = { startedListeningToFirebase: false }
 
   setListeningToFirebase() {
     this.setState({ startedListeningToFirebase: true });

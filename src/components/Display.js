@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Info from './Info';
-import Loader from './Loader';
 import Message from './Message';
+import Loader from './Loader';
+import Info from './Info';
 
 const StyledDisplay = styled.div`
   align-items: center;

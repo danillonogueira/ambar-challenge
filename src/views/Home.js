@@ -1,15 +1,16 @@
-import { Row, Col, Button } from 'antd';
-import CityButton from './../components/CityButton';
 import styled from 'styled-components';
-import { UnorderedListOutlined } from '@ant-design/icons';
-import Display from './../components/Display';
-import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getObservation } from '../services/GetObservation';
 import { filterCityData } from '../helpers/Filters';
 import { postObservation } from './../services/Firebase';
 import { showSuccessNotification, showFailureNotification, showWarningNotification } from './../helpers/Notifications';
 import { startFetching, stopFetching, storeObservation } from './../store/Actions';
+import { Row, Col, Button } from 'antd';
+import CityButton from './../components/CityButton';
+import { UnorderedListOutlined } from '@ant-design/icons';
+import Display from './../components/Display';
+import { Link } from 'react-router-dom';
+
 
 const StyledHome = styled.div`
   align-items: center;
