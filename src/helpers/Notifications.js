@@ -26,22 +26,27 @@ export const showWarningNotification = () => {
   });
 };
 
-// export const showUpdateNotification = () => {
-//   const key = `open${Date.now()}`;
-//   const btn = (
-//     <Button 
-//       type="primary" 
-//       size="small" 
-//       onClick={() => {notification.close(key)}}
-//     >
-//       Atualizar
-//     </Button>
-//   );
+export const showUpdateNotification = (resolve, reject) => {
+  const key = `open${Date.now()}`;
+  const btn = (
+    <Button 
+      type="primary" 
+      size="small" 
+      onClick={() => {
+        resolve()
+        notification.close(key);
+      }}
+    >
+      Atualizar
+    </Button>
+  );
 
-//   notification.warning({
-//     ...defaultNotification,
-//     message: 'Existem informações novas. Deseja atualizar?',
-//     key,
-//     btn
-//   });
-// };
+  return notification.warning({
+    placement: 'topRight',
+    message: 'Existem informações novas. Deseja atualizar a tabela?',
+    key,
+    btn,
+    duration: 0,
+    onClose: () => reject()
+  });
+};

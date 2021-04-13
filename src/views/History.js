@@ -2,10 +2,11 @@ import Loader from './../components/Loader';
 import { Component } from 'react';
 import styled from 'styled-components';
 import { Table } from 'antd';
-import { db } from './../services/Firebase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from './../store/Actions';
+import { getObservationsData } from './../helpers/Filters';
+import { listenToFirebase, stopListeningToFirebase } from './../services/Firebase';
 
 const StyledHistory = styled.div`
   display: flex;
@@ -13,7 +14,6 @@ const StyledHistory = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const tableColumns = [
   {
     title: 'Cidade',
@@ -37,45 +37,41 @@ const tableColumns = [
   }
 ];
 
-const getObservations = (snapshot) => {
-  return Object.entries(snapshot.val())
-    .map((observation, index) => {
-      return {
-        ...observation[1],
-        key: index + 1
-      };
-    });
-};
-
 class History extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     startedListeningToFirebase: false
   }
 
+  setListeningToFirebase() {
+    this.setState({ startedListeningToFirebase: true });
+  }
+
+  startLoading() {
+    this.props.startFetching();
+  }
+
+  tryToStoreObservations(payload) {
+    this.props.storeObservations(payload);
+  }
+
   componentDidMount() {
-    this.props.startLoading();
-    db.ref('observations')
-      .on('value', (snapshot) => {
-        const { startedListeningToFirebase } = this.state;
+    this.startLoading();
+    listenToFirebase((snapshot) => {
+      const { startedListeningToFirebase } = this.state;
 
-        if (!startedListeningToFirebase) {
-          this.setState({ startedListeningToFirebase: true });
-        }
+      if (!startedListeningToFirebase) {
+        this.setListeningToFirebase();
+      }
 
-        this.props.storeObservations({
-          newObservations: getObservations(snapshot),
-          startedListeningToFirebase
-        });
+      this.tryToStoreObservations({
+        newObservations: getObservationsData(snapshot),
+        startedListeningToFirebase
       });
+    })
   }
 
   componentWillUnmount() {
-    db.ref('observations')
-      .off();
+    stopListeningToFirebase();
   }
 
   render() {

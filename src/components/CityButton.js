@@ -1,9 +1,9 @@
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { getObservation } from '../services/GetObservation';
-import convertKelvinToCelsius from './../helpers/Helpers';
+import { convertKelvinToCelsius } from '../helpers/Filters';
 import { ThunderboltOutlined } from '@ant-design/icons';
-import postObservation from './../services/PostObservation';
+import { postObservation } from './../services/Firebase';
 import { showSuccessNotification, showFailureNotification, showWarningNotification } from './../helpers/Notifications';
 
 const CityButton = ({ city }) => {

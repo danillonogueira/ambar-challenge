@@ -1,32 +1,9 @@
 import { takeLatest, put, call, all } from 'redux-saga/effects';
-// import { showSuccessNotification } from './../helpers/Notifications';
-import { notification, Button } from 'antd';
+import { showUpdateNotification } from './../helpers/Notifications';
 
-
-const showUpdateNotification = () => {
+export const checkIfShouldUpdateData = () => {
   return new Promise((resolve, reject) => {
-    const key = `open${Date.now()}`;
-    const btn = (
-      <Button 
-        type="primary" 
-        size="small" 
-        onClick={() => {
-          resolve()
-          notification.close(key);
-        }}
-      >
-        Atualizar
-      </Button>
-    );
-
-    notification.warning({
-      placement: 'topRight',
-      message: 'Existem informações novas. Deseja atualizar?',
-      key,
-      btn,
-      duration: 0,
-      onClose: () => reject()
-    });
+    showUpdateNotification(resolve, reject);
   });
 };
 
@@ -35,7 +12,7 @@ export function* storeData(action) {
 
   if (startedListeningToFirebase) {
     try {
-      yield call(showUpdateNotification);
+      yield call(checkIfShouldUpdateData);
       yield put({ type: 'STORE_OBSERVATIONS', newObservations });
     } catch {
       yield put({ type: '' });

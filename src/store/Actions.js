@@ -5,6 +5,6 @@ export function storeObservations(payload) {
   }
 }
 
-export function startLoading() {
+export function startFetching() {
   return { type: 'FETCH_DATA' };
 }
