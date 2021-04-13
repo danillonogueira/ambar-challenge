@@ -32,10 +32,7 @@ const Home = () => {
         
         postObservation(newObservation)
           .then(() => showSuccessNotification())
-          .catch(() => {
-            showWarningNotification();
-            stopFetching();
-          })
+          .catch(() => showWarningNotification())
           .finally(() => {
             dispatch(
               storeObservation({
