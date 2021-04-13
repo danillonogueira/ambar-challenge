@@ -1,7 +1,11 @@
 import { Button } from 'antd';
 import { ThunderboltOutlined } from '@ant-design/icons';
 
-const CityButton = ({ clickHandler, city, isLoading }) => {
+const CityButton = ({ 
+  clickHandler, 
+  city, 
+  isLoading 
+}) => {
   return (
     <Button 
       type="primary"

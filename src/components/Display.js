@@ -12,7 +12,11 @@ const StyledDisplay = styled.div`
   text-align: center;
 `;
 
-const Display = ({ isLoading, hasObservation, observation }) => {
+const Display = ({ 
+  isLoading, 
+  hasObservation, 
+  observation 
+}) => {
   return (
     <StyledDisplay>
       {(!hasObservation && !isLoading) && <Message />}
