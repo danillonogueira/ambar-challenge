@@ -4,7 +4,7 @@ import * as Actions from './../store/Actions';
 import { listenToFirebase, stopListeningToFirebase } from './../services/Firebase';
 import { getObservationsData } from './../helpers/Filters';
 import Loader from './../components/Loader';
-import { Table } from 'antd';
+import Observations from './../components/Observations';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -15,28 +15,6 @@ const StyledHistory = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const tableColumns = [
-  {
-    title: 'Cidade',
-    dataIndex: 'city',
-    key: 'city'
-  },
-  {
-    title: 'Temperatura',
-    dataIndex: 'temp',
-    key: 'temp'
-  },
-  {
-    title: 'Mínima',
-    dataIndex: 'min',
-    key: 'min'
-  },
-  {
-    title: 'Máxima',
-    dataIndex: 'max',
-    key: 'max'
-  }
-];
 
 class History extends Component {
   state = { startedListeningToFirebase: false }
@@ -74,18 +52,12 @@ class History extends Component {
   }
 
   render() {
+    const { isLoading, observations } = this.props.temperatures;
+
     return (
       <StyledHistory>
-        {this.props.temperatures.isLoading && <Loader />}
-        {
-          !this.props.temperatures.isLoading && (
-            <Table 
-              pagination={{ pageSize: 10 }} 
-              columns={tableColumns}
-              dataSource={this.props.temperatures.observations} 
-            />
-          )
-        }
+        {isLoading && <Loader />}
+        {!isLoading && <Observations observations={observations} />}
       </StyledHistory>
     );
   }

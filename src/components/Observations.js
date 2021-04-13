@@ -1,6 +1,6 @@
 import { Table } from 'antd';
 
-const columns = [
+const tableColumns = [
   {
     title: 'Cidade',
     dataIndex: 'city',
@@ -26,7 +26,8 @@ const columns = [
 const Observations = ({ observations }) => {
   return(
     <Table 
-      columns={columns} 
+      pagination={{ pageSize: 10 }} 
+      columns={tableColumns} 
       dataSource={observations} 
     />
   );
