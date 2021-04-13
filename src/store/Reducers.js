@@ -1,7 +1,7 @@
 const initialState = {
+  isLoading: false,
   hasObservation: false,
   observation: {},
-  isLoading: false,
   observations: []
 };
 
