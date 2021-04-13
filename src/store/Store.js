@@ -1,4 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import rootSaga from './Sagas';
+import createSagaMiddleware from 'redux-saga';
 
 const initialState = {
   hasObservation: false,
@@ -7,8 +9,7 @@ const initialState = {
   observations: [],
   startedListeningToFb: false
 };
-
-const temperatureObservations = (state = initialState, action) => {
+const temperatures = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_DATA':
       return {
@@ -48,6 +49,12 @@ const temperatureObservations = (state = initialState, action) => {
       return state;
   }
 };
-const Store = createStore(temperatureObservations);
+const sagaMiddleware = createSagaMiddleware();
+const Store = createStore(
+  combineReducers({ temperatures }), 
+  applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(rootSaga)
 
 export default Store;

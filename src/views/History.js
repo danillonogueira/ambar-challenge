@@ -1,13 +1,13 @@
-import { useCallback, useEffect } from 'react';
-import { useSelector, useDispatch  } from 'react-redux';
-// import startFirebase from '../services/StartFirebase';
+// import { useSelector, useDispatch  } from 'react-redux';
 import Loader from './../components/Loader';
-// import { showSuccessNotification, showFailureNotification, showUpdateNotification } from './../helpers/Notifications';
-// import Observations from './../components/Observations';
+import { Component } from 'react';
 import styled from 'styled-components';
 import { Table } from 'antd';
 import { db } from './../services/Firebase';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { useEffect } from 'react';
+import * as Actions from './../store/Actions';
 
 const StyledHistory = styled.div`
   display: flex;
@@ -39,18 +39,42 @@ const tableColumns = [
   }
 ];
 
-const History = () => {
-  const { isLoading, observations } = useSelector(state => state);
-  const dispatch = useDispatch();
+// class History extends Component {
+//   constructor(props) {
+//     super(props);
+//   }
 
-  const startFetching = useCallback(() => {
-    dispatch({ type: 'FETCH_DATA' });
-  }, [dispatch]);
+//   componentDidMount() {
+//     db.ref('observations')
+//       .on('value', (snapshot) => {
+//         this.props.storeObservationsAction(getObservations(snapshot));
+//       });
+//   }
 
-  // const stopFetching = useCallback(() => {
-  //   dispatch({ type: 'OBSERVATION_FETCHING_ERROR' });
-  // }, [dispatch]);
+//   render() {
+//     return (
+//       <StyledHistory>
+//         {/* {isLoading && <Loader />} */}
+//         {/* {
+//           !isLoading && (
+//             <Table 
+//               pagination={{ pageSize: 10 }} 
+//               columns={tableColumns}
+//               dataSource={observations} 
+//             />
+//           )
+//         } */}
+//         <Table 
+//           pagination={{ pageSize: 10 }} 
+//           columns={tableColumns}
+//           dataSource={this.props.observations} 
+//         />
+//       </StyledHistory>
+//     );
+//   }
+// }
 
+const History = ({ temperatures, storeObservations, startLoading }) => {
   const getObservations = (snapshot) => {
     return Object.entries(snapshot.val())
       .map((observation, index) => {
@@ -61,40 +85,34 @@ const History = () => {
       });
   };
 
-  const storeObservations = useCallback((snapshot) => {
-    const newObservations = getObservations(snapshot);
-
-    dispatch({ 
-      type: 'STORE_OBSERVATIONS',
-      newObservations
-    });
-  }, [dispatch]);
-
   useEffect(() => {
-    startFetching();
+    startLoading();
     db.ref('observations')
       .on('value', (snapshot) => {
-        storeObservations(snapshot);
+        storeObservations(getObservations(snapshot));
       });
   }, [
-    startFetching, 
+    startLoading,
     storeObservations
-  ]);
+  ]); 
 
   return (
     <StyledHistory>
-      {isLoading && <Loader />}
+      {temperatures.isLoading && <Loader />}
       {
-        !isLoading && (
+        !temperatures.isLoading && (
           <Table 
             pagination={{ pageSize: 10 }} 
             columns={tableColumns}
-            dataSource={observations} 
+            dataSource={temperatures.observations} 
           />
         )
       }
     </StyledHistory>
   );
-}
+};
 
-export default History;
+const mapStateToProps = state => ({ temperatures: state.temperatures });
+const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(History);

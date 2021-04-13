@@ -14,7 +14,7 @@ const StyledDisplay = styled.div`
 `;
 
 const Display = () => {
-  const { observation, isLoading, hasObservation } = useSelector(state => state);
+  const { observation, isLoading, hasObservation } = useSelector(state => state.temperatures);
 
   return (
     <StyledDisplay>

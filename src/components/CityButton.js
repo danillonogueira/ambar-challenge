@@ -7,7 +7,7 @@ import postObservation from './../services/PostObservation';
 import { showSuccessNotification, showFailureNotification, showWarningNotification } from './../helpers/Notifications';
 
 const CityButton = ({ city }) => {
-  const { isLoading } = useSelector(state => state);
+  const { isLoading } = useSelector(state => state.temperatures);
   const dispatch = useDispatch();
 
   const startFetching = () => {

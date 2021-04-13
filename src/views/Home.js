@@ -16,7 +16,7 @@ const StyledHome = styled.div`
 
 const Home = () => {
   const dispatch = useDispatch();
-  
+
   // Ideally this must be done when user leaves History, lets see if it does the job though
   useEffect(() => {
     dispatch({ type: 'RESET_FIREBASE_LISTENING'});
