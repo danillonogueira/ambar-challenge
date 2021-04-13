@@ -1,4 +1,3 @@
-// import { useSelector, useDispatch  } from 'react-redux';
 import Loader from './../components/Loader';
 import { Component } from 'react';
 import styled from 'styled-components';
@@ -6,7 +5,6 @@ import { Table } from 'antd';
 import { db } from './../services/Firebase';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { useEffect } from 'react';
 import * as Actions from './../store/Actions';
 
 const StyledHistory = styled.div`
@@ -39,78 +37,53 @@ const tableColumns = [
   }
 ];
 
-// class History extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
+const getObservations = (snapshot) => {
+  return Object.entries(snapshot.val())
+    .map((observation, index) => {
+      return {
+        ...observation[1],
+        key: index + 1
+      };
+    });
+};
 
-//   componentDidMount() {
-//     db.ref('observations')
-//       .on('value', (snapshot) => {
-//         this.props.storeObservationsAction(getObservations(snapshot));
-//       });
-//   }
+class History extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-//   render() {
-//     return (
-//       <StyledHistory>
-//         {/* {isLoading && <Loader />} */}
-//         {/* {
-//           !isLoading && (
-//             <Table 
-//               pagination={{ pageSize: 10 }} 
-//               columns={tableColumns}
-//               dataSource={observations} 
-//             />
-//           )
-//         } */}
-//         <Table 
-//           pagination={{ pageSize: 10 }} 
-//           columns={tableColumns}
-//           dataSource={this.props.observations} 
-//         />
-//       </StyledHistory>
-//     );
-//   }
-// }
-
-const History = ({ temperatures, storeObservations, startLoading }) => {
-  const getObservations = (snapshot) => {
-    return Object.entries(snapshot.val())
-      .map((observation, index) => {
-        return {
-          ...observation[1],
-          key: index + 1
-        };
-      });
-  };
-
-  useEffect(() => {
-    startLoading();
+  componentWillMount() {
+    this.props.startLoading();
     db.ref('observations')
       .on('value', (snapshot) => {
-        storeObservations(getObservations(snapshot));
+        console.log('snapshot');
+        this.props.storeObservations(getObservations(snapshot));
       });
-  }, [
-    startLoading,
-    storeObservations
-  ]); 
+  }
 
-  return (
-    <StyledHistory>
-      {temperatures.isLoading && <Loader />}
-      {
-        !temperatures.isLoading && (
-          <Table 
-            pagination={{ pageSize: 10 }} 
-            columns={tableColumns}
-            dataSource={temperatures.observations} 
-          />
-        )
-      }
-    </StyledHistory>
-  );
-};
+  componentWillUnmount() {
+    db.ref('observations')
+      .off();
+    this.props.stopListeningToFirebase();
+  }
+
+  render() {
+    return (
+      <StyledHistory>
+        {this.props.temperatures.isLoading && <Loader />}
+        {
+          !this.props.temperatures.isLoading && (
+            <Table 
+              pagination={{ pageSize: 10 }} 
+              columns={tableColumns}
+              dataSource={this.props.temperatures.observations} 
+            />
+          )
+        }
+      </StyledHistory>
+    );
+  }
+}
 
 const mapStateToProps = state => ({ temperatures: state.temperatures });
 const mapDispatchToProps = dispatch => bindActionCreators(Actions, dispatch);
