@@ -7,23 +7,31 @@ export const checkIfShouldUpdateData = () => {
   });
 };
 
-export function* storeData(action) {
+export const storeData = function*(action) {
   const { newObservations, startedListeningToFirebase } = action.payload;
 
   if (startedListeningToFirebase) {
     try {
       yield call(checkIfShouldUpdateData);
-      yield put({ type: 'STORE_OBSERVATIONS', newObservations });
+      yield put({ 
+        type: 'STORE_OBSERVATIONS', 
+        newObservations 
+      });
     } catch {
       yield put({ type: '' });
     }
   } else {
-    yield put({ type: 'STORE_OBSERVATIONS', newObservations });
+    yield put({ 
+      type: 'STORE_OBSERVATIONS', 
+      newObservations 
+    });
   }
-}
+};
 
-export default function* root() {
+const root = function*() {
   yield all([
     takeLatest('ASYNC_STORE_OBSERVATIONS', storeData)
   ]);
-}
+};
+
+export default root;

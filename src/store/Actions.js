@@ -1,10 +1,10 @@
-export function storeObservations(payload) {
+export const storeObservations = function(payload) {
   return {
     type: 'ASYNC_STORE_OBSERVATIONS',
     payload
-  }
-}
+  };
+};
 
-export function startFetching() {
+export const startFetching = function() {
   return { type: 'FETCH_DATA' };
-}
+};
