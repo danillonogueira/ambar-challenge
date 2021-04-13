@@ -1,5 +1,7 @@
 import { Table } from 'antd';
 
+
+const tempRender = (text) => <span>{text}<sup>o</sup> C</span>;
 const tableColumns = [
   {
     title: 'Cidade',
@@ -9,17 +11,20 @@ const tableColumns = [
   {
     title: 'Temperatura',
     dataIndex: 'temp',
-    key: 'temp'
+    key: 'temp',
+    render: (text) => tempRender(text)
   },
   {
     title: 'Mínima',
     dataIndex: 'min',
-    key: 'min'
+    key: 'min',
+    render: (text) => tempRender(text)
   },
   {
     title: 'Máxima',
     dataIndex: 'max',
-    key: 'max'
+    key: 'max',
+    render: (text) => tempRender(text)
   }
 ];
 
