@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import Display from './../components/Display';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 const StyledHome = styled.div`
   display: flex;
@@ -15,13 +13,6 @@ const StyledHome = styled.div`
 `;
 
 const Home = () => {
-  const dispatch = useDispatch();
-
-  // Ideally this must be done when user leaves History, lets see if it does the job though
-  useEffect(() => {
-    dispatch({ type: 'RESET_FIREBASE_LISTENING'});
-  }, [dispatch]);
-
   return (
     <StyledHome>
       <Row gutter={[10, 10]}>

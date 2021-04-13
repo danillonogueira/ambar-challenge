@@ -76,7 +76,6 @@ class History extends Component {
   componentWillUnmount() {
     db.ref('observations')
       .off();
-    this.props.stopListeningToFirebase();
   }
 
   render() {

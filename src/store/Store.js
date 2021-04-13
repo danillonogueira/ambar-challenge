@@ -30,17 +30,6 @@ const temperatures = (state = initialState, action) => {
         isLoading: false,
         observations: [...action.newObservations]
       };
-    case 'LISTEN_TO_FIREBASE':
-      return {
-        ...state,
-        isLoading: false,
-        startedListeningToFirebase: true
-      }
-    case 'RESET_FIREBASE_LISTENING':
-      return {
-        ...state,
-        startedListeningToFirebase: false
-      }
     default:
       return state;
   }

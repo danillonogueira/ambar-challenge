@@ -11,7 +11,7 @@ const showUpdateNotification = () => {
         type="primary" 
         size="small" 
         onClick={() => {
-          resolve(true)
+          resolve()
           notification.close(key);
         }}
       >
@@ -25,7 +25,7 @@ const showUpdateNotification = () => {
       key,
       btn,
       duration: 0,
-      onClose: () => reject(false)
+      onClose: () => reject()
     });
   });
 };
@@ -36,7 +36,6 @@ export function* storeData(action) {
   if (startedListeningToFirebase) {
     try {
       yield call(showUpdateNotification);
-
       yield put({ type: 'STORE_OBSERVATIONS', newObservations });
     } catch {
       yield put({ type: '' });
@@ -47,7 +46,6 @@ export function* storeData(action) {
 }
 
 export default function* root() {
-
   yield all([
     takeLatest('ASYNC_STORE_OBSERVATIONS', storeData)
   ]);
