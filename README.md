@@ -6,6 +6,8 @@ Project for a front-end software engineer position at [Ambar](https://www.ambar.
 The applicant was free to choose any city he wanted, so the ones this project covers are Ribeirão Preto/SP, Araraquara/SP and São Carlos/SP, being all of them located in Brazil. 
 
 The API that the project makes use of to get data is [OWM](https://openweathermap.org/api). It also takes an integration with a [Realtime Database](https://firebase.google.com/docs/database) through [Firebase](https://firebase.google.com/), given that data persistence and realtime UI updates were requirements of the challenge.
+
+As for design specs, the developer was allowed to design the UI as he saw fit. For these purposes, Styled Components was used and also Ant Design, a React components library that Ambar seems to implement in the front-end.
 ## Technologies
 * JavasScript (ES6)
 * React
