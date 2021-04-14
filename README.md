@@ -3,9 +3,9 @@
 ## Aim
 Project for a front-end software engineer position at [Ambar](https://www.ambar.tech/). The project consisted in a temperature data fetching app. It had to provide the user with the fetching and displaying of temperature data of three cities. 
 
-The applicant was free to choose whatever city he wanted, so the ones this project covers are Ribeirão Preto/SP, Araraquara/SP and São Carlos/SP, all of them being located in Brazil. 
+The applicant was free to choose any city he wanted, so the ones this project covers are Ribeirão Preto/SP, Araraquara/SP and São Carlos/SP, being all of them located in Brazil. 
 
-The API that the project makes use of to get the data is [OWM](https://openweathermap.org/api). It also takes an integration with a [Realtime Database](https://firebase.google.com/docs/database) through [Firebase](https://firebase.google.com/), given that data persistence and realtime UI updates were requirements of the challenge.
+The API that the project makes use of to get data is [OWM](https://openweathermap.org/api). It also takes an integration with a [Realtime Database](https://firebase.google.com/docs/database) through [Firebase](https://firebase.google.com/), given that data persistence and realtime UI updates were requirements of the challenge.
 ## Technologies
 * JavasScript (ES6)
 * React
