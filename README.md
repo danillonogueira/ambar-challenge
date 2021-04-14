@@ -21,7 +21,7 @@ As for design specs, the developer was allowed to design the UI as he saw fit. F
 [Node.js](https://nodejs.org/en/)
 ## Running the project
 ### Clone or download this repository, navigate to project root and install dependencies:
-```$ npm install```
+```$ npm i```
 ### Running in development environment
 ```$ npm start```
 > The app will be available at port 3000.
