@@ -1,5 +1,5 @@
 import { showUpdateNotification } from './../helpers/Notifications';
-import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { call, put, takeEvery, all } from 'redux-saga/effects';
 
 export const checkIfShouldUpdateData = () => {
   return new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ export const storeData = function*(action) {
 
 const root = function*() {
   yield all([
-    takeLatest('ASYNC_STORE_OBSERVATIONS', storeData)
+    takeEvery('ASYNC_STORE_OBSERVATIONS', storeData)
   ]);
 };
 
