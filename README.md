@@ -21,7 +21,7 @@ As for design specs, the developer was allowed to design the UI as they saw fit.
 [Node.js](https://nodejs.org/en/)
 ## Running the project
 ### Clone or download this repository, navigate to project root and install dependencies:
-```$ npm i```
+```$ npm install```
 ### Running in development environment
 ```$ npm start```
 > The app will be available at port 3000.
@@ -31,7 +31,7 @@ As for design specs, the developer was allowed to design the UI as they saw fit.
 Install [serve](https://www.npmjs.com/package/serve), a static web server package:
 
 
-```$ npm i serve -g```
+```$ npm install serve -g```
 
 Serve the local build:
 
