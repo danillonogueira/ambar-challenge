@@ -41,12 +41,14 @@ export const showUpdateNotification = (resolve, reject) => {
     </Button>
   );
 
+  notification.destroy();
+
   return notification.warning({
     placement: 'topRight',
     message: 'Existem informações novas. Deseja atualizar a tabela?',
     key,
     btn,
     duration: 0,
-    onClose: () => reject()
+    onClose: () => reject(notification)
   });
 };
