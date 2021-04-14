@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { getObservation } from '../services/GetObservation';
-import { filterCityData } from '../helpers/Filters';
+import { getObservation } from './../services/GetObservation';
+import { filterCityData } from './../helpers/Filters';
 import { postObservation } from './../services/Firebase';
 import { showSuccessNotification, showFailureNotification, showWarningNotification } from './../helpers/Notifications';
 import { startFetching, stopFetching, storeObservation } from './../store/Actions';
