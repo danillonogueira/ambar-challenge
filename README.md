@@ -25,7 +25,7 @@ As for design specs, the developer was allowed to design the UI as he saw fit. F
 ### Running in development environment
 ```$ npm start```
 > The app will be available at port 3000.
-### Building for production:
+### Building for production
 ```$ npm run build```
 ### Running a local build
 Install [serve](https://www.npmjs.com/package/serve), a static web server package:
