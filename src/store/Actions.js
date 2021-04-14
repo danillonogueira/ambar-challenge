@@ -9,7 +9,14 @@ export const storeObservation = (newObservation) => {
   }
 };
 
-export const storeObservations = (payload) => {
+export const storeObservations = (newObservations) => {
+  return { 
+    type: 'STORE_OBSERVATIONS', 
+    newObservations 
+  };
+};
+
+export const asyncStoreObservations = (payload) => {
   return {
     type: 'ASYNC_STORE_OBSERVATIONS',
     payload

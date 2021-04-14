@@ -1,5 +1,6 @@
 import { showUpdateNotification } from './../helpers/Notifications';
-import { call, put, takeLatest, all } from 'redux-saga/effects';
+import { storeObservations } from './Actions';
+import { call, put, takeLatest, all, cancel } from 'redux-saga/effects';
 
 export const checkIfShouldUpdateData = () => {
   return new Promise((resolve, reject) => {
@@ -13,18 +14,12 @@ export const storeData = function*(action) {
   if (startedListeningToFirebase) {
     try {
       yield call(checkIfShouldUpdateData);
-      yield put({ 
-        type: 'STORE_OBSERVATIONS', 
-        newObservations 
-      });
+      yield put(storeObservations(newObservations));
     } catch {
-      yield put({ type: '' });
+      yield cancel();
     }
   } else {
-    yield put({ 
-      type: 'STORE_OBSERVATIONS', 
-      newObservations 
-    });
+    yield put(storeObservations(newObservations));
   }
 };
 

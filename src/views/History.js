@@ -27,7 +27,7 @@ class History extends Component {
   }
 
   tryToStoreObservations(payload) {
-    this.props.storeObservations(payload);
+    this.props.asyncStoreObservations(payload);
   }
 
   componentDidMount() {
