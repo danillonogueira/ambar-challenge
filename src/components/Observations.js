@@ -1,6 +1,5 @@
 import { Table } from 'antd';
 
-
 const tempRender = (text) => <span>{text}<sup>o</sup> C</span>;
 const tableColumns = [
   {
