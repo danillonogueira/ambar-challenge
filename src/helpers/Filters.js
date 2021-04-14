@@ -12,6 +12,10 @@ export const filterCityData = (data, city) => {
 };
 
 export const getObservationsData = (snapshot) => {
+  if (!snapshot.val()) {
+    return [];
+  }
+
   return Object.entries(snapshot.val())
     .map((observation, index) => {
       return {
