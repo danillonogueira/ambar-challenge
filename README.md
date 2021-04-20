@@ -26,7 +26,7 @@ As for design specs, the developer was allowed to style the UI as they saw fit. 
 ## Running the project
 ### Configuring the environment:
 
-Created a ```.env``` file in the root directory and add the following variables with their respective API keys:
+Create a ```.env``` file **in the root directory** and add the following variables with their respective API keys:
 
 ```
 REACT_APP_OWM_KEY=YOUR_OWM_API_KEY
