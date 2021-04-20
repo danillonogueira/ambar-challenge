@@ -1,5 +1,6 @@
 import axios from 'axios';
 
-const endpoint = (city) => `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=b3a08718086de16c5d4d700140460b05`;
+const { REACT_APP_OWM_KEY } = process.env;
+const endpoint = (city) => `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${REACT_APP_OWM_KEY}`;
 
 export const getObservation = (city) => axios.get(endpoint(city));

@@ -9,10 +9,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 const StyledHistory = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 `;
 
 class History extends Component {

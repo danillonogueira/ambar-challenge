@@ -11,7 +11,6 @@ As for design specs, the developer was allowed to style the UI as they saw fit. 
 ## Technologies
 * JavasScript (ES6)
 * React
-* React Hooks
 * Redux
 * Redux Saga
 * Firebase
