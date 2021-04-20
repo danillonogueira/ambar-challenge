@@ -20,8 +20,8 @@ As for design specs, the developer was allowed to style the UI as they saw fit. 
 
 
 * [Node.js](https://nodejs.org/en/)
-* [OWM](https://openweathermap.org/) (API access key)
-* [Firebase Realtime Database](https://firebase.google.com/) (API access key/project URL)
+* [OWM](https://openweathermap.org/) (API key)
+* [Firebase Realtime Database](https://firebase.google.com/) (API key/project URL)
 
 ## Running the project
 ### Clone or download this repository, navigate to project root and install dependencies:
