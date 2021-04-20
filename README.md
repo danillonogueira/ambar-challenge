@@ -24,7 +24,9 @@ As for design specs, the developer was allowed to style the UI as they saw fit. 
 * [Firebase Realtime Database](https://firebase.google.com/)
 
 ## Running the project
-### Configuring the environment:
+### Clone or download this repository, navigate to project root and install dependencies:
+```$ npm install```
+### Configure the environment:
 
 Create a ```.env``` file **in the root directory** and add the following variables with their respective API keys:
 
@@ -33,9 +35,6 @@ REACT_APP_OWM_KEY=YOUR_OWM_API_KEY
 REACT_APP_FIREBASE_KEY=YOUR_FIREBASE_API_KEY
 REACT_APP_DATABASE_URL=YOUR_FIREBASE_PROJECT_URL
 ```
-
-### Clone or download this repository, navigate to project root and install dependencies:
-```$ npm install```
 ### Running in development environment
 ```$ npm start```
 > The app will be available at port 3000.
