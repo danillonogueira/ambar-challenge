@@ -17,8 +17,23 @@ As for design specs, the developer was allowed to style the UI as they saw fit. 
 * Axios
 * Styled Components
 ## Requirements
-[Node.js](https://nodejs.org/en/)
+
+
+* [Node.js](https://nodejs.org/en/)
+* [OWM](https://openweathermap.org/)
+* [Firebase Realtime Database](https://firebase.google.com/)
+
 ## Running the project
+### Configuring the environment:
+
+Created a ```.env``` file in the root directory and add the following variables with their respective API keys:
+
+```
+REACT_APP_OWM_KEY=YOUR_OWM_API_KEY
+REACT_APP_FIREBASE_KEY=YOUR_FIREBASE_API_KEY
+REACT_APP_DATABASE_URL=YOUR_FIREBASE_PROJECT_URL
+```
+
 ### Clone or download this repository, navigate to project root and install dependencies:
 ```$ npm install```
 ### Running in development environment
