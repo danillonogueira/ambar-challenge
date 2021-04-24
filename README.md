@@ -21,14 +21,14 @@ As for design specs, the developer was allowed to style the UI as they saw fit. 
 
 * [Node.js](https://nodejs.org/en/)
 * [OWM](https://openweathermap.org/) (API key)
-* [Firebase Realtime Database](https://firebase.google.com/) (API key/project URL)
+* [Firebase Realtime Database](https://firebase.google.com/) (API key and project URL)
 
 ## Running the project
 ### Clone or download this repository, navigate to project root and install dependencies:
 ```$ npm install```
 ### Configure the environment:
 
-Create a ```.env``` file **in the root directory** and add the following variables:
+Create a ```.env``` file **in the root directory** and add the following variables with their respective values:
 
 ```
 REACT_APP_OWM_KEY=YOUR_OWM_API_KEY
